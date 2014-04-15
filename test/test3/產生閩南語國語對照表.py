@@ -12,6 +12,7 @@ class handle_excel():
 				return data
 		except Exception as e:
 				print (str(e))
+				raise
 
 	def excel_table_for_字元(self, file, colnameindex=0, by_index=0):
 		data = self.open_excel(file)
@@ -52,7 +53,7 @@ class MyHTMLParser(HTMLParser):
 			
 class 資料處理():
 	excel = handle_excel()
-	所有字集 = ['一']  # excel.excel_table_for_字元(r'../twblg_data_20131230/例句.xls')|excel.excel_table_for_字元(r'../twblg_data_20131230/釋義.xls')
+	所有字集 = excel.excel_table_for_字元(r'../twblg_data_20131230/例句.xls')|excel.excel_table_for_字元(r'../twblg_data_20131230/釋義.xls')#['一']  # 
 	數字對照表 = excel.excel_table_for_編號(r'../twblg_data_20131230/詞目總檔(含俗諺).xls')	
 	全部國語詞 = []
 	國語詞集合 = set()
@@ -84,7 +85,7 @@ class 資料處理():
 					if 詞 not in self.國語詞集合:
 						self.全部國語詞.append(詞)
 						self.國語詞集合.add(詞)		
-						print(self.全部國語詞) 
+						print(self.全部國語詞[-10:]) 
 			if parser.counter == 10:
 					self.單字搜尋(NextWord)							
 	
